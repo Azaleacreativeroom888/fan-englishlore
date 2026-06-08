@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | The Green Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep:    #1a3a1a;
+    --green-dark:    #264d26;
+    --green-mid:     #3b6b2e;
+    --green-meadow:  #5a8f3c;
+    --green-light:   #8fbc5a;
+    --green-pale:    #c8e6a0;
+    --gold:          #c9a84c;
+    --gold-light:    #e8cc7a;
+    --parchment:     #f5edd8;
+    --parchment-dark:#e8d9b8;
+    --text-muted:    #5a5540;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--green-deep);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 0%, #2d5a1a 0%, transparent 70%),
+      repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px
+      );
+    color: var(--parchment);
+    font-family: 'IM Fell English', 'Noto Serif JP', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    border: 6px solid var(--gold);
+    box-shadow:
+      inset 0 0 0 2px var(--green-dark),
+      inset 0 0 0 10px rgba(201,168,76,0.15),
+      0 0 60px rgba(90,143,60,0.3);
+    z-index: 100;
+  }
+
+  /* ─── Header ─── */
+  header {
+    position: relative;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--gold);
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(90,143,60,0.35) 0%, transparent 80%);
+    pointer-events: none;
+  }
+  .site-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .site-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green-light);
+    margin-top: 0.4rem;
+  }
+
+  /* ─── Nav ─── */
+  nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.35);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-right: 1px solid rgba(201,168,76,0.2);
+    transition: background 0.2s, color 0.2s;
+  }
+  nav a:first-child { border-left: 1px solid rgba(201,168,76,0.2); }
+  nav a:hover { background: rgba(90,143,60,0.3); color: var(--gold-light); }
+  nav a.active { color: var(--gold); background: rgba(90,143,60,0.15); }
+
+  /* ─── Main ─── */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .page-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 2.5rem;
+    color: var(--gold);
+  }
+  .section-rule::before,
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .section-rule span { font-size: 1rem; opacity: 0.6; }
+
+  /* ─── Entries ─── */
+  .entries { display: flex; flex-direction: column; gap: 0; }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 0 1.6rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    align-items: baseline;
+    animation: fadeUp 0.4s ease both;
+  }
+  .entry:first-child { border-top: 1px solid rgba(201,168,76,0.15); }
+
+  .entry-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    white-space: nowrap;
+    padding-top: 0.1rem;
+    line-height: 1.6;
+  }
+
+  .entry-tag {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15em 0.6em;
+    border-radius: 2px;
+    border: 1px solid;
+    margin-top: 0.4rem;
+    width: fit-content;
+  }
+  .tag-christian { color: var(--gold-light);  border-color: rgba(201,168,76,0.5);   background: rgba(201,168,76,0.1); }
+  .tag-mother    { color: #a8d8a8;            border-color: rgba(168,216,168,0.4);  background: rgba(168,216,168,0.08); }
+  .tag-shake     { color: #c8a0c0;            border-color: rgba(200,160,192,0.4);  background: rgba(200,160,192,0.08); }
+  .tag-aesop     { color: #d4b896;            border-color: rgba(212,184,150,0.4);  background: rgba(212,184,150,0.08); }
+  .tag-misc      { color: var(--green-pale);  border-color: rgba(200,230,160,0.35); background: rgba(200,230,160,0.06); }
+
+  .entry-body {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--parchment-dark);
+  }
+
+  .entry-body em {
+    font-style: italic;
+    color: var(--green-pale);
+    font-family: 'IM Fell English', serif;
+  }
+
+  /* ─── Year separator ─── */
+  .year-sep {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--green-light);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.8rem 0 0.5rem;
+    opacity: 0.6;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    background: rgba(0,0,0,0.25);
+  }
+  .footer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  footer p { font-size: 0.75rem; color: var(--text-muted); font-family: 'IM Fell English', serif; font-style: italic; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .entry:nth-child(1)  { animation-delay: 0.03s; }
+  .entry:nth-child(2)  { animation-delay: 0.07s; }
+  .entry:nth-child(3)  { animation-delay: 0.11s; }
+  .entry:nth-child(4)  { animation-delay: 0.15s; }
+  .entry:nth-child(5)  { animation-delay: 0.19s; }
+  .entry:nth-child(6)  { animation-delay: 0.23s; }
+  .entry:nth-child(7)  { animation-delay: 0.27s; }
+  .entry:nth-child(8)  { animation-delay: 0.31s; }
+  .entry:nth-child(9)  { animation-delay: 0.35s; }
+  .entry:nth-child(10) { animation-delay: 0.39s; }
+
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 0.3rem 0; }
+    .entry-date { font-size: 0.68rem; }
+    main { padding: 2rem 1.2rem 4rem; }
+    nav a { padding: 0.7rem 1rem; font-size: 0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="site-title">The Green Chronicle</h1>
+  <p class="site-subtitle">A Compendium of English Heritage &amp; Wisdom</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="blog.html" class="active">Blog</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html">About</a>
+</nav>
+
+<main>
+
+  <p class="page-heading">Chronicle &mdash; Blog</p>
+  <div class="section-rule"><span>❧</span></div>
+
+  <div class="entries">
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-06-01</p>
+        <span class="entry-tag tag-christian">Christianity</span>
+      </div>
+      <p class="entry-body">山上の垂訓の冒頭、<em>Blessed are the poor in spirit</em>（心の貧しき者は幸いなり）を読んだ。"poor in spirit" が「霊的に謙虚な者」という意味だと知って、ずっと抱いていた違和感がやっと解けた気がした。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-28</p>
+        <span class="entry-tag tag-shake">Shakespeare</span>
+      </div>
+      <p class="entry-body">ハムレットの <em>To be, or not to be</em> を声に出して読んでみた。意味を考えながら読むより、まずリズムに乗って読んだほうがずっと入ってくる。英語詩はやはり音で味わうものだと実感。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-24</p>
+        <span class="entry-tag tag-mother">Mother Goose</span>
+      </div>
+      <p class="entry-body">「ジャックとジル」の歌詞、子供向けのわりにチューダー朝の増税への風刺が込められているらしい。<em>Jack and Jill went up the hill</em> のあの丘が税務署を指すという説、なんとも皮肉が効いていておもしろい。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-20</p>
+        <span class="entry-tag tag-aesop">Aesop</span>
+      </div>
+      <p class="entry-body">「ウサギとカメ」の英語原文を読んだ。<em>Slow and steady wins the race.</em> という教訓の一文、短くて力強い。日本語訳の「急がば回れ」とはニュアンスが少し違うことに気づく。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-15</p>
+        <span class="entry-tag tag-christian">Christianity</span>
+      </div>
+      <p class="entry-body">主の祈り（<em>The Lord's Prayer</em>）の <em>Hallowed be thy name</em>。"hallowed" という古語がなぜ残り続けているのか調べたら、ハロウィン（Hallow's Eve）と語源が同じだと知って驚いた。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-10</p>
+        <span class="entry-tag tag-misc">Diary</span>
+      </div>
+      <p class="entry-body">このサイトを作り始めた。英語を学ぶのに文法だけ追っていても飽きてしまうので、好きな文化や物語を通じて学べる場所を作ろうと思った。ゆっくり、でも続けていきたい。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-08</p>
+        <span class="entry-tag tag-shake">Shakespeare</span>
+      </div>
+      <p class="entry-body"><em>All the world's a stage</em>（「お気に召すまま」）の七つの人生の段階を読んだ。Infant から Second childishness まで、人間の一生を舞台の役に例えたシェイクスピアの発想は400年後の今も刺さる。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-05-03</p>
+        <span class="entry-tag tag-aesop">Aesop</span>
+      </div>
+      <p class="entry-body">「北風と太陽」の英語タイトルは <em>The North Wind and the Sun</em>。旅人のコートを脱がせる競争、この話の構造がそのままプレゼンや説得術の比喩として今でも使われているのがすごい。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-04-28</p>
+        <span class="entry-tag tag-mother">Mother Goose</span>
+      </div>
+      <p class="entry-body"><em>Humpty Dumpty sat on a wall</em> — ハンプティ・ダンプティが卵の形をしているのは原文には書かれておらず、後世のイラストが定着させたと知った。先入観というのは怖い。</p>
+    </div>
+
+    <div class="entry">
+      <div>
+        <p class="entry-date">2025-04-20</p>
+        <span class="entry-tag tag-christian">Christianity</span>
+      </div>
+      <p class="entry-body">創世記の冒頭 <em>In the beginning God created the heavens and the earth.</em> のたった一文の重さ。英語で読むと、ヘブライ語の原文の簡潔さがそのまま伝わってくる気がして、好きな一節になった。</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-title">The Green Chronicle</p>
+  <p>A quiet corner of the web for English heritage &amp; learning &nbsp;·&nbsp; Made with care</p>
+</footer>
+
+</body>
+</html>
