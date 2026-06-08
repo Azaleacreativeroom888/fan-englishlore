@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | The Green Chronicle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep:    #1a3a1a;
+    --green-dark:    #264d26;
+    --green-mid:     #3b6b2e;
+    --green-meadow:  #5a8f3c;
+    --green-light:   #8fbc5a;
+    --green-pale:    #c8e6a0;
+    --gold:          #c9a84c;
+    --gold-light:    #e8cc7a;
+    --parchment:     #f5edd8;
+    --parchment-dark:#e8d9b8;
+    --text-muted:    #5a5540;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--green-deep);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 0%, #2d5a1a 0%, transparent 70%),
+      repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px
+      );
+    color: var(--parchment);
+    font-family: 'IM Fell English', 'Noto Serif JP', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    border: 6px solid var(--gold);
+    box-shadow:
+      inset 0 0 0 2px var(--green-dark),
+      inset 0 0 0 10px rgba(201,168,76,0.15),
+      0 0 60px rgba(90,143,60,0.3);
+    z-index: 100;
+  }
+
+  /* ─── Header ─── */
+  header {
+    position: relative;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid var(--gold);
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(90,143,60,0.35) 0%, transparent 80%);
+    pointer-events: none;
+  }
+  .site-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .site-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green-light);
+    margin-top: 0.4rem;
+  }
+
+  /* ─── Nav ─── */
+  nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(0,0,0,0.35);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-right: 1px solid rgba(201,168,76,0.2);
+    transition: background 0.2s, color 0.2s;
+  }
+  nav a:first-child { border-left: 1px solid rgba(201,168,76,0.2); }
+  nav a:hover { background: rgba(90,143,60,0.3); color: var(--gold-light); }
+  nav a.active { color: var(--gold); background: rgba(90,143,60,0.15); }
+
+  /* ─── Main ─── */
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .page-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto 2.5rem;
+    color: var(--gold);
+  }
+  .section-rule::before,
+  .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .section-rule span { font-size: 1rem; opacity: 0.6; }
+
+  /* ─── Section header ─── */
+  .section-head {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .section-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.5), transparent);
+  }
+
+  /* ─── About card ─── */
+  .about-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-top: 3px solid var(--gold);
+    padding: 2rem 2.2rem;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .about-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+
+  .about-card p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: var(--parchment-dark);
+    margin-bottom: 0.9rem;
+  }
+  .about-card p:last-child { margin-bottom: 0; }
+
+  .about-card em {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: var(--green-pale);
+  }
+
+  /* ─── Pillars list ─── */
+  .pillar-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1.2rem 0;
+  }
+  .pillar-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 0.8rem 1rem;
+  }
+  .pillar-item-icon { font-size: 1.3rem; line-height: 1; flex-shrink: 0; margin-top: 0.1rem; }
+  .pillar-item-text { font-family: 'Noto Serif JP', serif; font-size: 0.82rem; line-height: 1.6; color: var(--parchment-dark); }
+  .pillar-item-en { display: block; font-family: 'IM Fell English', serif; font-style: italic; font-size: 0.78rem; color: var(--green-light); margin-top: 0.1rem; }
+
+  /* ─── Link grid ─── */
+  .link-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 520px) { .link-grid { grid-template-columns: 1fr; } .pillar-list { grid-template-columns: 1fr; } }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.9rem 1rem;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+  .link-card:hover {
+    background: rgba(90,143,60,0.15);
+    border-color: rgba(201,168,76,0.5);
+    transform: translateY(-2px);
+  }
+
+  .link-icon {
+    font-size: 1.4rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(90,143,60,0.2);
+    border: 1px solid rgba(201,168,76,0.2);
+    flex-shrink: 0;
+  }
+
+  .link-text { flex: 1; min-width: 0; }
+  .link-name {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    margin-bottom: 0.2rem;
+  }
+  .link-desc {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .link-arrow {
+    font-size: 1.1rem;
+    color: rgba(201,168,76,0.4);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .link-card:hover .link-arrow { transform: translateX(3px); color: var(--gold); }
+
+  /* ─── Form ─── */
+  .form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 2rem 2.2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.45s 0.1s ease both;
+  }
+
+  .form-intro {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--parchment-dark);
+    margin-bottom: 1.4rem;
+  }
+
+  .form-group { margin-bottom: 1.1rem; }
+
+  .form-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.45rem;
+  }
+  .required { color: var(--green-light); margin-left: 3px; }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--parchment);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.88rem;
+    padding: 0.65rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: rgba(245,237,216,0.25); }
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  .form-textarea { resize: vertical; min-height: 140px; }
+
+  .form-submit {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    background: var(--gold);
+    border: none;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-success {
+    background: rgba(90,143,60,0.15);
+    border: 1px solid rgba(143,188,90,0.4);
+    padding: 1rem 1.2rem;
+    color: var(--green-pale);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+    display: none;
+    text-align: center;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    background: rgba(0,0,0,0.25);
+  }
+  .footer-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  footer p { font-size: 0.75rem; color: var(--text-muted); font-family: 'IM Fell English', serif; font-style: italic; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 560px) {
+    main { padding: 2rem 1.2rem 4rem; }
+    nav a { padding: 0.7rem 1rem; font-size: 0.72rem; }
+    .about-card, .form-card { padding: 1.4rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="site-title">The Green Chronicle</h1>
+  <p class="site-subtitle">A Compendium of English Heritage &amp; Wisdom</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="blog.html">Blog</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html" class="active">About</a>
+</nav>
+
+<main>
+
+  <p class="page-heading">About &mdash; このサイトについて</p>
+  <div class="section-rule"><span>❧</span></div>
+
+  <!-- サイト説明 -->
+  <div class="section-head">❧ About This Site</div>
+  <div class="about-card">
+    <h2>The Green Chronicle とは</h2>
+    <p>
+      このサイトは、<em>英語圏の知的・文化的遺産</em>を日本語話者向けに丁寧に読み解く学習サイトです。
+      古い英語の言葉の中に息づく物語、思想、詩、そして寓話——その背景や成り立ちを、
+      原文の美しさとともにじっくり探求することを目指しています。
+    </p>
+    <p>
+      文法だけを追う英語学習ではなく、<em>文化や物語を入り口にして</em>英語に親しむ場所として作りました。
+      読んで楽しく、気づきがある——そんなコンテンツを少しずつ積み重ねていきます。
+    </p>
+
+    <div class="pillar-list">
+      <div class="pillar-item">
+        <span class="pillar-item-icon">✝</span>
+        <div>
+          <span class="pillar-item-text">キリスト教</span>
+          <span class="pillar-item-en">Christianity</span>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-item-icon">🪿</span>
+        <div>
+          <span class="pillar-item-text">マザーグース</span>
+          <span class="pillar-item-en">Mother Goose</span>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-item-icon">🎭</span>
+        <div>
+          <span class="pillar-item-text">シェイクスピア</span>
+          <span class="pillar-item-en">Shakespeare</span>
+        </div>
+      </div>
+      <div class="pillar-item">
+        <span class="pillar-item-icon">🦊</span>
+        <div>
+          <span class="pillar-item-text">イソップ物語</span>
+          <span class="pillar-item-en">Aesop's Fables</span>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      ブログは日記形式で更新し、ギャラリーには関連イラストを掲載しています。
+      どこからでも気軽に読み始めてください。
+    </p>
+  </div>
+
+  <!-- リンク -->
+  <div class="section-head">🔗 Related Sites</div>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">近況・更新のお知らせ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+      <div class="link-icon">✒️</div>
+      <div class="link-text">
+        <span class="link-name">カクヨム</span>
+        <span class="link-desc">小説を掲載中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">漫画掲載サイト</span>
+        <span class="link-desc">オリジナル漫画を投稿中</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" rel="noopener">
+      <div class="link-icon">📖</div>
+      <div class="link-text">
+        <span class="link-name">書評サイト</span>
+        <span class="link-desc">小説・本のレビュー</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <!-- お問い合わせ -->
+  <div class="section-head">📮 Contact</div>
+  <div class="form-card">
+    <p class="form-intro">
+      ご質問・ご感想・コンテンツのリクエストなど、お気軽にどうぞ。<br>
+      返信は数日以内を目安にしています。
+    </p>
+
+    <div class="form-success" id="formSuccess">
+      ✉️ メッセージを送信しました。ありがとうございます！
+    </div>
+
+    <form id="contactForm">
+      <div class="form-group">
+        <label class="form-label" for="name">お名前</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="お名前（任意）">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス<span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">メッセージ<span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="メッセージをどうぞ…" rows="6" required></textarea>
+      </div>
+      <button class="form-submit" type="submit">✉ 送信する</button>
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <p class="footer-title">The Green Chronicle</p>
+  <p>当サイトの文章・イラストの無断転載・AI学習への利用を禁止します。</p>
+  <p>A quiet corner of the web for English heritage &amp; learning &nbsp;·&nbsp; Made with care</p>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+    this.reset();
+    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    this.querySelector('.form-submit').disabled = true;
+  });
+</script>
+
+</body>
+</html>
